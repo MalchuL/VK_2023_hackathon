@@ -5,8 +5,6 @@ import torch.optim.lr_scheduler
 imputer_path = 'notebooks/imputer.joblib'
 transformer_path = 'notebooks/transformer.joblib'
 
-print(imputer, transformer)
-
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 import numpy as np
@@ -17,11 +15,14 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import RobustScaler
 from sklearn.preprocessing import MinMaxScaler
 
+
+
 if True:
+    train_data = np.load('notebooks/train_X.npy')
     imputer = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
-    train_data = imputer.fit('notebooks/train_X.npy')
-    imputer = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
-    train_data = transformer.fit(train_data)
+    train_data = imputer.fit_transform(train_data)
+    transformer = RobustScaler()
+    train_data = transformer.fit_transform(train_data)
 
     from joblib import dump, load
 
