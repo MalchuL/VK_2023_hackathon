@@ -51,7 +51,7 @@ class MyDataset(Dataset):
         return self.X[idx], self.y[idx]
 
 
-class FuckEveryoneMLP(nn.Module):
+class MLP(nn.Module):
     def __init__(self, in_features, out_features=1):
         super().__init__()
         self.mlp1 = nn.Linear(in_features, 32)
