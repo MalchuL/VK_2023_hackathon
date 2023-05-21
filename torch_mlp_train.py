@@ -84,7 +84,7 @@ test_dataloader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
 EPOCHS = 5
 
-model = FuckEveryoneMLP(24).cuda()
+model = MLP(24).cuda()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.0002)
 
 scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer, pct_start=0.01, max_lr=0.0002, steps_per_epoch=True,
